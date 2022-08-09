@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+
+  survey-app:
+    build: .
+    ports:
+      - '9991:80'
+    hostname: survey-app
+    volumes:
+      - ./app:/app
+    environment:
+      PG_USERNAME: ${PG_USERNAME}
+      PG_PASSWORD: ${POSTGRES_USER}
+      PG_DATABASE: ${POSTGRES_DB}
+      PG_HOST: ${PG_HOST}
+      WEB_CONCURRENCY: 1
+      MAX_WORKERS: 1
+      WORKERS_PER_CORE: 0.5
+      GUNICORN_CMD_ARGS: "--workers=1"
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: uthvbjyf
+      POSTGRES_USER: artemdanilenko
+      POSTGRES_DB: hybrid_ai
+    ports:
+      - '5432:5432'
+    hostname: db
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - '8:8080'
