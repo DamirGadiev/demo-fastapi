@@ -1,8 +1,11 @@
 from typing import List, Dict
 import sys
 
-sys.path.append( '/handlers' )
-sys.path.append('/models')
+print("-========================-")
+print(sys.path)
+pring("-=====================-")
+# sys.path.append( '/handlers' )
+# sys.path.append('/models')
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
