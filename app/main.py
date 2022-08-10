@@ -4,7 +4,7 @@ import os
 
 print("-========================-")
 print(sys.path)
-dir_path = os.path.dirname(os.path.realpath(__file__)) + '/handlers'
+dir_path = os.path.dirname(os.path.realpath(__file__))
 print(dir_path)
 sys.path.append(dir_path)
 print(sys.path)
