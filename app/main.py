@@ -2,15 +2,8 @@ from typing import List, Dict
 import sys
 import os
 
-print("-========================-")
-print(sys.path)
 dir_path = os.path.dirname(os.path.realpath(__file__))
-print(dir_path)
 sys.path.append(dir_path)
-print(sys.path)
-print("-=====================-")
-# sys.path.append( '/handlers' )
-# sys.path.append('/models')
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
