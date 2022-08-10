@@ -1,9 +1,14 @@
 from typing import List, Dict
 import sys
+import os
 
 print("-========================-")
 print(sys.path)
-pring("-=====================-")
+dir_path = os.path.dirname(os.path.realpath(__file__)) + '/app'
+print(dir_path)
+sys.path.append(dir_path)
+print(sys.path)
+print("-=====================-")
 # sys.path.append( '/handlers' )
 # sys.path.append('/models')
 
