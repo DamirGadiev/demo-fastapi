@@ -48,6 +48,10 @@ html = """
             message.appendChild(content)
             messages.appendChild(message)
         };
+        ws.onerror = function (event) {
+            console.log("Error happened!");
+            console.log(event);
+        }
         function startExperiment() {
             ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": {}, "message": "Start the experiment" }))
         }
