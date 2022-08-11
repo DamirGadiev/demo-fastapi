@@ -7,11 +7,11 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 import logging
 from handlers.base_handler import MessageHandler
-from models import database, metadata, engine
+from models import database #, metadata, engine
 
 app = FastAPI()
 
-metadata.create_all(engine)
+#metadata.create_all(engine)
 
 html = """
 <!DOCTYPE html>
