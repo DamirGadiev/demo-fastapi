@@ -1,8 +1,10 @@
 from typing import List, Dict
+
 import os
 import sys
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path)
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 import logging
@@ -38,7 +40,7 @@ html = """
     <script>
         var client_id = "client_id_test"
         document.querySelector("#ws-id").textContent = client_id;
-        var ws = new WebSocket(`ws://localhost:9991/device/${client_id}/WEB_APP`);
+        var ws = new WebSocket(`ws://https://touchlesssurveyapp.azurewebsites.net/device/${client_id}/WEB_APP`);
         ws.onmessage = function (event) {
             var messages = document.getElementById("messages")
             var message = document.createElement("li")
