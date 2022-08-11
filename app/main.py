@@ -27,8 +27,14 @@ html = """
     <h1>Events channel</h1>
     <h2>Your ID: <span id="ws-id"></span></h2>
     <button onclick="startExperiment()">Start experiment</button>
+    <button onclick="repeatExperiment()">Repeat experiment</button>
     <button onclick="stopExperiment()">Stop experiment</button>
     <button onclick="finishExperiment()">Finish experiment</button>
+    <button onclick="deviceConnectionReady()">Device connection ready</button>
+    <button onclick="deviceUltraleapReady()">Device ultraleap ready</button>
+    <button onclick="devicePatternsReady()">Device patterns ready</button>
+    <button onclick="deviceCameraReady()">Device camera ready</button>
+    <button onclick="deviceActivePatternReady()">Device Active Pattern Ready</button>
     <ul id="messages">
     </ul>
     <script>
@@ -43,10 +49,13 @@ html = """
             messages.appendChild(message)
         };
         function startExperiment() {
-            ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": {}, "message": "" }))
+            ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": {}, "message": "Start the experiment" }))
+        }
+        function repeatExperiment() {
+            ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": {"pattern_id": "circle.csv"}, "message": "Repeat the experiment" }))
         }
         function stopExperiment() {
-            ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_STOP", "data": {}, "message": "" }))
+            ws.send(JSON.stringify({ "type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_STOP", "data": {}, "message": "Stop the experiment" }))
         }
         function finishExperiment() {
             ws.send(JSON.stringify({
@@ -54,9 +63,51 @@ html = """
                 "action": "EXPERIMENT_FINISHED",
                 "data": {
                     "reason": "no errors occured",
-                    "pattern_id": 12345
+                    "pattern_id": "cicrle.csv"
                 },
                 "message": "Current experiment is finished."
+            }))
+        }
+        function deviceConnectionReady() {
+            ws.send(JSON.stringify({
+            "type": "DEVICE",
+            "action": "DEVICE_CONNECTION_OPEN",
+            "data": {},
+            "message": "Connection is open."
+            }))
+        }
+        function deviceUltraleapReady() {
+            ws.send(JSON.stringify({
+                "type": "DEVICE",
+                "action": "DEVICE_ULTRALEAP_READY",
+                "data": {},
+                "message": "Ultraleap device is ready."
+            }))
+        }
+        function deviceCameraReady() {
+            ws.send(JSON.stringify({
+                "type": "DEVICE",
+                "action": "DEVICE_CAMERA_READY",
+                "data": {},
+                "message": "Camera connection established."
+            }))
+        }
+        function devicePatternsReady() {
+            ws.send(JSON.stringify({
+                "type": "DEVICE",
+                "action": "DEVICE_PATTERNS_READY",
+                "data": {},
+                "message": "Patterns are ready."
+            }))
+        }
+        function deviceActivePatternReady() {
+            ws.send(JSON.stringify({
+            "type": "DEVICE",
+            "action": "DEVICE_ACTIVE_PATTERN_READY",
+            "data": {
+                "pattern_id": "circle.csv"
+            },
+            "message": "Active pattern is ready."
             }))
         }
     </script>
