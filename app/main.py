@@ -1,5 +1,6 @@
 from typing import List, Dict
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path)
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 import logging
