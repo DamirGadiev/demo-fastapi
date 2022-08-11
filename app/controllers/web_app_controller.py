@@ -8,7 +8,7 @@ class WebAppController:
     @classmethod
     async def storing_data(cls, websocket, data, manager):
         try:
-            profile_id = await create_profile(gender=data.gender, age=data.age)
+            profile_id = await create_profile(gender=data.gender, age=data.age, identifier=data.identifier)
             experiment_id = await create_experiment(
                 pattern_name=data.pattern_name,
                 pattern_id=data.pattern_id,
@@ -31,7 +31,7 @@ class WebAppController:
         # profile_id = await create_profile(message)
         # await websocket.send_text(str({"data": {"message": "register_profile", "profile_id": profile_id}}))
         await manager.broadcast(websocket,
-                                str({"type": "WEB_APP", "action": "WEB_APP_REGISTRATION", "data": {},
+                                str({"type": "WEB_APP", "action": "WEB_APP_REGISTRATION", "data": data,
                                      "message": "#WEB APP REGISTRATION"}))
 
     @classmethod
@@ -44,7 +44,7 @@ class WebAppController:
     @classmethod
     async def experiment_evaluate(cls, websocket, data, manager):
         await manager.broadcast(websocket,
-                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_EVALUATE", "data": {},
+                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_EVALUATE", "data": data,
                                      "message": "#WEB APP EXPERIMENT EVALUATE"}))
 
     @classmethod
@@ -53,7 +53,7 @@ class WebAppController:
         # experiment_id = await create_experiment(message)
         # await websocket.send_text(str({"data": {"message": "start_experiment", "experiment_id": experiment_id}}))
         await manager.broadcast(websocket,
-                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": {},
+                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_START", "data": data,
                                      "message": "#WEB APP EXPERIMENT START"}))
 
     @classmethod
@@ -64,7 +64,7 @@ class WebAppController:
         # )
         # await websocket.send_text(str({"data": {"message": "stop_experiment", "experiment_id": experiment_id}}))
         await manager.broadcast(websocket,
-                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_STOP", "data": {},
+                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_STOP", "data": data,
                                      "message": "#WEB APP EXPERIMENT STOP"}))
 
     @classmethod
@@ -74,7 +74,7 @@ class WebAppController:
         #     message.experiment_id, message.profile_id, ExperimentStatusEnum.repeat
         # )
         # await websocket.send_text(str({"data": {"message": "repeat_experiment", "experiment_id": experiment_id}}))
-        await manager.broadcast(websocket, str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_REPEAT", "data": {},
+        await manager.broadcast(websocket, str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_REPEAT", "data": data,
                                                 "message": "#WEB APP EXPERIMENT REPEAT"}))
 
     @classmethod
@@ -85,7 +85,7 @@ class WebAppController:
         # )
         # await websocket.send_text(str({"data": {"message": "fail_experiment", "experiment_id": experiment_id}}))
         await manager.broadcast(websocket,
-                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_FAIL", "data": {},
+                                str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_FAIL", "data": data,
                                      "message": "#WEB APP EXPERIMENT FAIL"}))
 
     @classmethod
@@ -95,7 +95,7 @@ class WebAppController:
         #     message.experiment_id, message.profile_id, ExperimentStatusEnum.finished
         # )
         # await websocket.send_text(str({"data": {"message": "finished_experiment", "experiment_id": experiment_id}}))
-        await manager.broadcast(websocket, str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_FINISH", "data": {},
+        await manager.broadcast(websocket, str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_FINISH", "data": data,
                                                 "message": "#WEB APP EXPERIMENT FINISH"}))
 
     @classmethod

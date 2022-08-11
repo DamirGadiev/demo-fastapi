@@ -37,6 +37,7 @@ class ExperimentDataModel(BaseModel):
     pattern_name: str = ''
     gender: str
     age: int
+    identifier: str
     sensitivity_assessment: int
     mood_assessment: int
     description: str = ''
