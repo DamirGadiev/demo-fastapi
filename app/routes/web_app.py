@@ -1,4 +1,11 @@
 from typing import List
+import os
+import sys
+dir_path = os.path.dirname(os.path.realpath(__file__))
+print("here we are=========")
+print(os.path.abspath(os.path.join(dir_path, os.pardir)))
+print("and there we are")
+
 
 from fastapi import WebSocket, WebSocketDisconnect, Request, APIRouter
 from fastapi.templating import Jinja2Templates
@@ -9,6 +16,7 @@ from models.profiles import aggregate_by_profile
 from schemas.web_app_shemas import SummaryDataModel
 
 route = APIRouter()
+
 
 templates = Jinja2Templates(directory="../templates")
 
