@@ -9,6 +9,8 @@ ecdsa==0.18.0
 fastapi==0.78.0
 h11==0.13.0
 idna==3.3
+Jinja2==3.1.2
+MarkupSafe==2.1.1
 passlib==1.7.4
 psycopg2-binary==2.9.3
 pyasn1==0.4.8

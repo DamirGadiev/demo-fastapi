@@ -1,5 +1,8 @@
 from pydantic import BaseModel
 
+from models.experiments import ExperimentStatusEnum
+from models.profiles import GenderEnum
+
 
 class MessageModel(BaseModel):
     type: str
@@ -41,3 +44,19 @@ class ExperimentDataModel(BaseModel):
     sensitivity_assessment: int
     mood_assessment: int
     description: str = ''
+
+
+class SummaryDataModel(BaseModel):
+    id: int
+    identifier: str
+    gender: GenderEnum
+    age: int
+    mood_assessment: int
+    sensitivity_assessment: int
+    description: str
+    pattern_id: str
+    status: ExperimentStatusEnum
+
+    class Config:
+        orm_mode = True
+        use_enum_values = True
