@@ -5,7 +5,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 print("here we are=========")
 print(os.path.abspath(os.path.join(dir_path, os.pardir)))
 print("and there we are")
-exit()
+# exit()
 
 print(os.path.abspath)
 
@@ -20,8 +20,8 @@ from schemas.web_app_shemas import SummaryDataModel
 
 route = APIRouter()
 
-
-templates = Jinja2Templates(directory="../templates")
+dir_p = os.path.abspath(os.path.join(dir_path, os.pardir)) + '/templates'
+templates = Jinja2Templates(directory=dir_p)
 
 
 @route.get("/")
