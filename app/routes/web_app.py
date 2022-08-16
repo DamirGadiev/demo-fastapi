@@ -5,6 +5,9 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 print("here we are=========")
 print(os.path.abspath(os.path.join(dir_path, os.pardir)))
 print("and there we are")
+exit()
+
+print(os.path.abspath)
 
 
 from fastapi import WebSocket, WebSocketDisconnect, Request, APIRouter
