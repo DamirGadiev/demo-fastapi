@@ -36,7 +36,7 @@ template = """
 <script>
     var client_id = "client_id_test"
     document.querySelector("#ws-id").textContent = client_id;
-    var ws = new WebSocket(`ws://localhost:9991/device/${client_id}/WEB_APP`);
+    var ws = new WebSocket(`ws://touchlesssurveyapp.azurewebsites.net/device/${client_id}/WEB_APP`);
     ws.onmessage = function (event) {
         var messages = document.getElementById("messages")
         var message = document.createElement("li")
