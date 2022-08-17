@@ -12,6 +12,7 @@ class WebAppActionEnum(Enum):
     WEB_APP_EXPERIMENT_REPEAT = "WEB_APP_EXPERIMENT_REPEAT"
     WEB_APP_EXPERIMENT_FINISH = "WEB_APP_EXPERIMENT_FINISH"
     WEB_APP_EXPERIMENT_ERROR = "WEB_APP_EXPERIMENT_ERROR"
+    WEB_APP_NEW_SESSION = "WEB_APP_NEW_SESSION"
 
 
 class WebAppMessageHandler:
@@ -22,6 +23,8 @@ class WebAppMessageHandler:
             await WebAppController.register_profile(websocket, message.data,  manager)
         elif message.action == WebAppActionEnum.WEB_APP_EVALUATION_FORM.name:
             await WebAppController.evaluation_form(websocket, message.data,  manager)
+        elif message.action == WebAppActionEnum.WEB_APP_NEW_SESSION.name:
+            await WebAppController.new_session(websocket, message.data,  manager)
         elif message.action == WebAppActionEnum.WEB_APP_EXPERIMENT_EVALUATE.name:
             await WebAppController.experiment_evaluate(websocket, message.data,  manager)
         elif message.action == WebAppActionEnum.WEB_APP_EXPERIMENT_START.name:

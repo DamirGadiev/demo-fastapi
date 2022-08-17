@@ -41,11 +41,18 @@ class WebAppController:
         await manager.broadcast(websocket,
                                 str({"type": "WEB_APP", "action": "WEB_APP_EVALUATION_FORM", "data": data,
                                      "message": "#WEB APP EVALUATION FORM"}))
+
     @classmethod
     async def experiment_evaluate(cls, websocket, data, manager):
         await manager.broadcast(websocket,
                                 str({"type": "WEB_APP", "action": "WEB_APP_EXPERIMENT_EVALUATE", "data": data,
                                      "message": "#WEB APP EXPERIMENT EVALUATE"}))
+
+    @classmethod
+    async def new_session(cls, websocket, data, manager):
+        await manager.broadcast(websocket,
+                                str({"type": "WEB_APP", "action": "WEB_APP_NEW_SESSION", "data": data,
+                                     "message": "#WEB APP NEW SESSION"}))
 
     @classmethod
     async def start_experiment(cls, websocket, data, manager):
