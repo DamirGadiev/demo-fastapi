@@ -1,6 +1,6 @@
-from config import Config
+from decouple import config
 
-if Config.IS_AZURE_ENVIRONMENT:
+if config('IS_AZURE_ENVIRONMENT'):
     import os
     import sys
 
