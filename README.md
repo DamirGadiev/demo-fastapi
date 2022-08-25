@@ -15,27 +15,13 @@ Easiest way to run this app is to run a docker container. Docker should be insta
 docker network create hybrid-ai-net
 ```
 
-
-2. Create .env file like that
-
-```
-PG_USERNAME='change'
-PG_PASSWORD='change'
-PG_DATABASE='change'
-```
-
-3. Add it to the network.
+2. Add it to the network.
 
 ```
 docker network connect hybrid-ai-net survey-app
 ```
 
-4. Should open main.py file and uncomment lines of code(for creating tables in database):
-```
-from models import database#, metadata, engine
-# metadata.create_all(engine)
-```
-5. Run build project by docker-compose
+3. Run build project by docker-compose
 
 ```
 docker-compose build

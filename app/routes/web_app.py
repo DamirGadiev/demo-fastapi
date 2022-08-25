@@ -36,7 +36,7 @@ template = """
 <script>
     var client_id = "client_id_test"
     document.querySelector("#ws-id").textContent = client_id;
-    var ws = new WebSocket(`ws://touchlesssurveyapp.azurewebsites.net/device/${client_id}/WEB_APP`);
+    var ws = new WebSocket(`ws://localhost:9991/device/${client_id}/WEB_APP`);
     ws.onmessage = function (event) {
         var messages = document.getElementById("messages")
         var message = document.createElement("li")
@@ -50,6 +50,7 @@ template = """
             "type": "WEB_APP",
             "action": "WEB_APP_EXPERIMENT_START",
             "data": {},
+            "status": {"type": "success", "description": "Experiment initiated from webapp"},
             "message": "Start the experiment"
         }))
     }
@@ -59,6 +60,7 @@ template = """
             "type": "WEB_APP",
             "action": "WEB_APP_EXPERIMENT_START",
             "data": {"pattern_id": "circle.csv"},
+            "status": {"type": "success", "description": "Experiment repeat from webapp"},
             "message": "Repeat the experiment"
         }))
     }
@@ -68,6 +70,7 @@ template = """
             "type": "WEB_APP",
             "action": "WEB_APP_EXPERIMENT_STOP",
             "data": {},
+            "status": {"type": "success", "description": "Experiment stopped from webapp"},
             "message": "Stop the experiment"
         }))
     }
@@ -80,6 +83,7 @@ template = """
                 "reason": "no errors occured",
                 "pattern_id": "cicrle.csv"
             },
+            "status": {"type": "success", "description": "Experiment finished from webapp"},
             "message": "Current experiment is finished."
         }))
     }
@@ -89,6 +93,7 @@ template = """
             "type": "WEB_APP",
             "action": "WEB_APP_NEW_SESSION",
             "data": {},
+            "status": {"type": "success", "description": "Experiment new session in webapp"},
             "message": "New session initiated from webapp"
         }))
     }
@@ -98,6 +103,7 @@ template = """
             "type": "DEVICE",
             "action": "DEVICE_CONNECTION_OPEN",
             "data": {},
+            "status": {"type": "success", "description": "Device initiated from webapp"},
             "message": "Connection is open."
         }))
     }
@@ -107,6 +113,7 @@ template = """
             "type": "DEVICE",
             "action": "DEVICE_ULTRALEAP_READY",
             "data": {},
+            "status": {"type": "success", "description": "Device Ultraleap ready"},
             "message": "Ultraleap device is ready."
         }))
     }
@@ -116,6 +123,7 @@ template = """
             "type": "DEVICE",
             "action": "DEVICE_CAMERA_READY",
             "data": {},
+            "status": {"type": "success", "description": "Device Camera ready"},
             "message": "Camera connection established."
         }))
     }
@@ -125,6 +133,7 @@ template = """
             "type": "DEVICE",
             "action": "DEVICE_PATTERNS_READY",
             "data": {},
+            "status": {"type": "success", "description": "Device Patterns ready"},
             "message": "Patterns are ready."
         }))
     }
@@ -136,6 +145,7 @@ template = """
             "data": {
                 "pattern_id": "circle.csv"
             },
+            "status": {"type": "success", "description": "Device Active Patterns ready"},
             "message": "Active pattern is ready."
         }))
     }
@@ -162,6 +172,8 @@ async def websocket_endpoint(websocket: WebSocket, client_id, device_type):
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         await manager.broadcast(websocket, str({"type": "DEVICE", "action": "DISCONNECT", "data": {},
+                                                "status": {"type": "success",
+                                                           "description": f"{device_type} disconnected"},
                                                 "message": f"#{device_type} left the chat #{client_id}"}))
 
 

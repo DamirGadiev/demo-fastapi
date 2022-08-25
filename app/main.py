@@ -1,15 +1,19 @@
-import os
-import sys
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path)
+from config import Config
 
-from fastapi import FastAPI 
+if Config.IS_AZURE_ENVIRONMENT:
+    import os
+    import sys
 
-from models import database #, metadata, engine
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    sys.path.append(dir_path)
+
+from fastapi import FastAPI
+
+from models import database, metadata, engine
 from routes import web_app
 
 app = FastAPI()
-#metadata.create_all(engine)
+metadata.create_all(engine)
 
 
 @app.on_event("startup")

@@ -25,13 +25,16 @@ profile = sqlalchemy.Table(
 
 
 async def create_profile(gender: str, age: int, identifier: str) -> int:
-    query = profile.insert().values(
-        gender=gender,
-        identifier=identifier,
-        age=age
-    )
-    profile_id = await database.execute(query)
-    return profile_id
+    query = profile.select().where(profile.c.identifier == identifier)
+    profile_obj = await database.fetch_one(query)
+    if not profile_obj:
+        query = profile.insert().values(
+            gender=gender,
+            identifier=identifier,
+            age=age
+        )
+        return await database.execute(query)
+    return profile_obj.id
 
 
 async def aggregate_by_profile():

@@ -7,7 +7,8 @@ from models.profiles import GenderEnum
 class MessageModel(BaseModel):
     type: str
     action: str
-    data: dict = {}
+    data: dict
+    status: dict
     message: str
 
 

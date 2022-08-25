@@ -6,6 +6,7 @@ BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
 class Config:
+    IS_AZURE_ENVIRONMENT = config('IS_AZURE_ENVIRONMENT')
     PG_USERNAME = config('PG_USERNAME')
     PG_PASSWORD = config('PG_PASSWORD')
     PG_DATABASE = config('PG_DATABASE')

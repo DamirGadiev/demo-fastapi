@@ -22,8 +22,13 @@ class ConnectionManager:
 
         self.active_connections.get(client_id).get(device_type).append(websocket)
 
-        await manager.broadcast(websocket, str({"type": "DEVICE", "action": "CONNECT", "data": {},
-                                                "message": f"#{device_type} joined the channel"}))
+        await manager.broadcast(websocket, str({
+            "type": "DEVICE",
+            "action": "CONNECT",
+            "data": {},
+            "status": {"type": "success", "description": f"{device_type} connected"},
+            "message": f"#{device_type} joined the channel"
+        }))
 
     def disconnect(self, websocket: WebSocket):
         client_id = websocket.path_params["client_id"]
@@ -39,7 +44,7 @@ class ConnectionManager:
     async def send_personal_message(self, message: str, websocket: WebSocket):
         await websocket.send_text(message)
 
-    async def broadcast(self, websocket, message: str):
+    async def broadcast(self, websocket: WebSocket, message: str):
         client_id = websocket.path_params["client_id"]
         device_type = websocket.path_params["device_type"]
         for key in self.active_connections.get(client_id, {}):
