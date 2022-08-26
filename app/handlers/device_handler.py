@@ -28,8 +28,6 @@ class DeviceMessageHandler:
             await DeviceController.device_connection_open(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_CAMERA_READY.name:
             await DeviceController.device_camera_ready(websocket, message, manager)
-        elif message.action == DeviceActionEnum.DEVICE_CAMERA_ERROR.name:
-            await DeviceController.device_camera_error(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_PATTERNS_READY.name:
             await DeviceController.device_patterns_ready(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_PATTERNS_ERROR.name:
