@@ -8,7 +8,7 @@ from controllers.experiment_controller import ExperimentController
 class ExperimentActionEnum(Enum):
     EXPERIMENT_STARTED = "EXPERIMENT_STARTED"
     EXPERIMENT_PAUSED = "EXPERIMENT_PAUSED"
-    EXPERIMENT_STOPED = "EXPERIMENT_STOPED"
+    EXPERIMENT_STOPPED = "EXPERIMENT_STOPPED"
     EXPERIMENT_ERROR = "EXPERIMENT_ERROR"
     EXPERIMENT_REPEATED = "EXPERIMENT_REPEATED"
     EXPERIMENT_FINISHED = "EXPERIMENT_FINISHED"
@@ -22,8 +22,8 @@ class ExperimentMessageHandler:
             await ExperimentController.experiment_started(websocket, message, manager)
         elif message.action == ExperimentActionEnum.EXPERIMENT_PAUSED.name:
             await ExperimentController.experiment_paused(websocket, message, manager)
-        elif message.action == ExperimentActionEnum.EXPERIMENT_STOPED.name:
-            await ExperimentController.experiment_stoped(websocket, message, manager)
+        elif message.action == ExperimentActionEnum.EXPERIMENT_STOPPED.name:
+            await ExperimentController.experiment_stopped(websocket, message, manager)
         elif message.action == ExperimentActionEnum.EXPERIMENT_ERROR.name:
             await ExperimentController.experiment_error(websocket, message, manager)
         elif message.action == ExperimentActionEnum.EXPERIMENT_REPEATED.name:

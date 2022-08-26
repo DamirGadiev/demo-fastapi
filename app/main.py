@@ -13,7 +13,7 @@ from models import database, metadata, engine
 from routes import web_app
 
 app = FastAPI()
-#metadata.create_all(engine)
+metadata.create_all(engine)
 
 
 @app.on_event("startup")

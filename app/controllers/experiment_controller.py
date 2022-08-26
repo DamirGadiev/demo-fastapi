@@ -24,8 +24,8 @@ class ExperimentController:
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod
-    async def experiment_stoped(cls, websocket: WebSocket, message, manager):
-        action = "EXPERIMENT_STOPED"
+    async def experiment_stopped(cls, websocket: WebSocket, message, manager):
+        action = "EXPERIMENT_STOPPED"
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod

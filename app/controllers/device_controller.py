@@ -34,8 +34,8 @@ class DeviceController:
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod
-    async def device_pattern_error(cls, websocket: WebSocket, message, manager):
-        action = "DEVICE_PATTERN_ERROR"
+    async def device_patterns_error(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_PATTERNS_ERROR"
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod
@@ -51,6 +51,31 @@ class DeviceController:
     @classmethod
     async def device_setup_ready(cls, websocket: WebSocket, message, manager):
         action = "DEVICE_SETUP_READY"
+        await cls.generate_response(websocket, action, message, manager)
+
+    @classmethod
+    async def device_camera_stopped(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_CAMERA_STOPPED"
+        await cls.generate_response(websocket, action, message, manager)
+
+    @classmethod
+    async def device_camera_detected(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_CAMERA_DETECTED"
+        await cls.generate_response(websocket, action, message, manager)
+
+    @classmethod
+    async def device_camera_not_detected(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_CAMERA_NOT_DETECTED"
+        await cls.generate_response(websocket, action, message, manager)
+
+    @classmethod
+    async def device_active_pattern_error(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_ACTIVE_PATTERN_ERROR"
+        await cls.generate_response(websocket, action, message, manager)
+
+    @classmethod
+    async def device_active_pattern_ready(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_ACTIVE_PATTERN_READY"
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod
