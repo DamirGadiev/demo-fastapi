@@ -1,7 +1,9 @@
+import io
 from typing import List
 
 from fastapi import WebSocket, WebSocketDisconnect, APIRouter
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
+from pandas import DataFrame
 
 from handlers.base_handler import MessageHandler
 from managers.connection_managers import manager
@@ -180,4 +182,30 @@ async def websocket_endpoint(websocket: WebSocket, client_id, device_type):
 @route.get("/summary", response_model=List[SummaryDataModel])
 async def get_summary():
     summary = await aggregate_by_profile()
-    return summary
+    result = [
+        {
+            "id": item.id,
+            "identifier": item.identifier,
+            "gender": item.gender,
+            "age": item.age, "mood_assessment": item.mood_assessment,
+            "sensitivity_assessment": item.sensitivity_assessment,
+            "description": item.description,
+            "pattern_id": item.pattern_id,
+            "status": item.status
+        }
+        for item in summary
+    ]
+
+    df = DataFrame(result)
+
+    stream = io.StringIO()
+
+    df.to_csv(stream, index=False)
+
+    response = StreamingResponse(iter([stream.getvalue()]),
+                                 media_type="text/csv"
+                                 )
+
+    response.headers["Content-Disposition"] = "attachment; filename=export.csv"
+
+    return response
