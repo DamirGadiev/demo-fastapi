@@ -22,6 +22,7 @@ class WebAppController:
                 description=data.description,
                 profile_id=profile_id,
                 experiment_id=experiment_id,
+                correct_hand_position_procentage=data.correct_hand_position_procentage
             )
         except Exception as e:
             await manager.broadcast(websocket, str({

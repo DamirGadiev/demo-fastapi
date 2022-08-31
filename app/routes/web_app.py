@@ -189,6 +189,7 @@ async def get_summary():
             "gender": item.gender,
             "age": item.age, "mood_assessment": item.mood_assessment,
             "sensitivity_assessment": item.sensitivity_assessment,
+            "correct_hand_position_procentage": f"{item.correct_hand_position_procentage:.10f}",
             "description": item.description,
             "pattern_id": item.pattern_id,
             "status": item.status

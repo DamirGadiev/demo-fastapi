@@ -45,6 +45,7 @@ class ExperimentDataModel(BaseModel):
     sensitivity_assessment: int
     mood_assessment: int
     description: str = ''
+    correct_hand_position_procentage: float
 
 
 class SummaryDataModel(BaseModel):

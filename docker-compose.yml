@@ -30,8 +30,8 @@ services:
       - '5432:5432'
     hostname: db
 
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - '8:8080'
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8:8080'
