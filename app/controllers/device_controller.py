@@ -44,8 +44,8 @@ class DeviceController:
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod
-    async def device_ultraleap_stopped(cls, websocket: WebSocket, message, manager):
-        action = "DEVICE_ULTRALEAP_STOPPED"
+    async def device_ultraleap_error(cls, websocket: WebSocket, message, manager):
+        action = "DEVICE_ULTRALEAP_ERROR"
         await cls.generate_response(websocket, action, message, manager)
 
     @classmethod

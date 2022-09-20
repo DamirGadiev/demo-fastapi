@@ -7,7 +7,7 @@ from controllers.device_controller import DeviceController
 
 class DeviceActionEnum(Enum):
     DEVICE_ULTRALEAP_READY = "DEVICE_ULTRALEAP_READY"
-    DEVICE_ULTRALEAP_STOPPED = "DEVICE_ULTRALEAP_STOPPED"
+    DEVICE_ULTRALEAP_ERROR = "DEVICE_ULTRALEAP_STOPPED"
     DEVICE_PATTERNS_READY = "DEVICE_PATTERNS_READY"
     DEVICE_PATTERNS_ERROR = "DEVICE_PATTERNS_ERROR"
     DEVICE_ACTIVE_PATTERN_ERROR = "DEVICE_ACTIVE_PATTERN_ERROR"
@@ -34,8 +34,8 @@ class DeviceMessageHandler:
             await DeviceController.device_patterns_error(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_ULTRALEAP_READY.name:
             await DeviceController.device_ultraleap_ready(websocket, message, manager)
-        elif message.action == DeviceActionEnum.DEVICE_ULTRALEAP_STOPPED.name:
-            await DeviceController.device_ultraleap_stopped(websocket, message, manager)
+        elif message.action == DeviceActionEnum.DEVICE_ULTRALEAP_ERROR.name:
+            await DeviceController.device_ultraleap_error(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_SETUP_READY.name:
             await DeviceController.device_setup_ready(websocket, message, manager)
         elif message.action == DeviceActionEnum.DEVICE_CAMERA_STOPPED.name:
