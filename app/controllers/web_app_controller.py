@@ -17,12 +17,19 @@ class WebAppController:
                 profile_id=profile_id
             )
             evaluation_experiment_id = await create_evaluation_experiment(
-                sensitivity_assessment=data.sensitivity_assessment,
-                mood_assessment=data.mood_assessment,
+                valence=data.valence,
+                arousal=data.arousal,
+                intensity=data.intensity,
+                sharpness=data.sharpness,
+                roughness=data.roughness,
+                regularity=data.regularity,
+                shape_recognition=data.shape_recognition,
                 description=data.description,
+                question_1=data.question_1,
+                question_2=data.question_2,
+                correct_hand_position_procentage=data.correct_hand_position_procentage,
                 profile_id=profile_id,
                 experiment_id=experiment_id,
-                correct_hand_position_procentage=data.correct_hand_position_procentage
             )
         except Exception as e:
             await manager.broadcast(websocket, str({

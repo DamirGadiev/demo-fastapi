@@ -41,9 +41,18 @@ class ExperimentDataModel(BaseModel):
     pattern_name: str = ''
     gender: str
     age: int
+    valence: int
+    arousal: int
+    intensity: int
+    sharpness: int
+    roughness: int
+    regularity: int
+    shape_recognition: int
+    description: int
+    question_1: str
+    question_2: str
+    correct_hand_position_procentage: int
     identifier: str
-    sensitivity_assessment: int
-    mood_assessment: int
     description: str = ''
     correct_hand_position_procentage: float
 
@@ -53,8 +62,16 @@ class SummaryDataModel(BaseModel):
     identifier: str
     gender: GenderEnum
     age: int
-    mood_assessment: int
-    sensitivity_assessment: int
+    valence: int
+    arousal: int
+    intensity: int
+    sharpness: int
+    roughness: int
+    regularity: int
+    shape_recognition: int
+    question_1: str
+    question_2: str
+    correct_hand_position_procentage: int
     description: str
     pattern_id: str
     status: ExperimentStatusEnum
