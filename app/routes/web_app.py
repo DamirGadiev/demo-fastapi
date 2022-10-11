@@ -210,7 +210,6 @@ async def get_summary(password: str = Form()):
     summary = await aggregate_by_profile()
     result = [
         {
-            "id": item.id,
             "identifier": item.identifier,
             "gender": item.gender,
             "valence": item.valence,
