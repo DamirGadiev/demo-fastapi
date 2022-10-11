@@ -1,14 +1,12 @@
 import io
-from typing import List
 
-from fastapi import WebSocket, WebSocketDisconnect, APIRouter
+from fastapi import WebSocket, WebSocketDisconnect, APIRouter, Form
 from fastapi.responses import HTMLResponse, StreamingResponse
 from pandas import DataFrame
 
 from handlers.base_handler import MessageHandler
 from managers.connection_managers import manager
 from models.profiles import aggregate_by_profile
-from schemas.web_app_shemas import SummaryDataModel
 
 route = APIRouter()
 
@@ -158,6 +156,26 @@ template = """
 
 """
 
+summary_page = """
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connected device</title>
+</head>
+
+<body>
+<h1>Would you like download summary data ?</h1>
+<p>Please enter you personal password</p>
+<form action="/summary" method="post">
+<label>Your password: </label>
+<input type="password" name="password">
+<input type="submit" value="ENTER">
+</form>
+</body>
+</html>
+"""
+
 
 @route.get("/")
 async def get():
@@ -179,8 +197,16 @@ async def websocket_endpoint(websocket: WebSocket, client_id, device_type):
                                                 "message": f"#{device_type} left the chat #{client_id}"}))
 
 
-@route.get("/summary", response_model=List[SummaryDataModel])
-async def get_summary():
+@route.get("/summary")
+async def get_summary_page():
+    return HTMLResponse(summary_page)
+
+
+@route.post("/summary")
+async def get_summary(password: str = Form()):
+    if not password == "1111":
+        return {"message": "invalid password"}
+
     summary = await aggregate_by_profile()
     result = [
         {
@@ -194,7 +220,6 @@ async def get_summary():
             "roughness": item.roughness,
             "regularity": item.regularity,
             "shape_recognition": item.shape_recognition,
-            "description": item.description,
             "question_1": item.question_1,
             "question_2": item.question_2,
             "correct_hand_position_procentage": item.correct_hand_position_procentage,

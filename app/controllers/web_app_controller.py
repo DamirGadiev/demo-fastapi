@@ -24,7 +24,6 @@ class WebAppController:
                 roughness=data.roughness,
                 regularity=data.regularity,
                 shape_recognition=data.shape_recognition,
-                description=data.description,
                 question_1=data.question_1,
                 question_2=data.question_2,
                 correct_hand_position_procentage=data.correct_hand_position_procentage,

@@ -25,7 +25,7 @@ evaluation_experiment = sqlalchemy.Table(
 async def create_evaluation_experiment(
         valence: int, arousal: int, intensity: int,
         sharpness: int, roughness: int, regularity: int,
-        shape_recognition, description: str, question_1: str,
+        shape_recognition, question_1: str,
         question_2: str, correct_hand_position_procentage: int,
         profile_id: int, experiment_id: int
 ) -> int:
@@ -37,7 +37,6 @@ async def create_evaluation_experiment(
         roughness=roughness,
         regularity=regularity,
         shape_recognition=shape_recognition,
-        description=description,
         question_1=question_1,
         question_2=question_2,
         correct_hand_position_procentage=correct_hand_position_procentage,

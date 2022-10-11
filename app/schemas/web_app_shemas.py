@@ -31,7 +31,7 @@ class ExperimentModel(BaseModel):
 class EvaluationExperimentModel(BaseModel):
     sensitivity_assessment: int
     mood_assessment: int
-    description: str = ''
+    # description: str = ''
     profile_id: int = None
     experiment_id: int = None
 
@@ -48,12 +48,11 @@ class ExperimentDataModel(BaseModel):
     roughness: int
     regularity: int
     shape_recognition: int
-    description: int
+    # description: int
     question_1: str
     question_2: str
     correct_hand_position_procentage: int
     identifier: str
-    description: str = ''
     correct_hand_position_procentage: float
 
 
@@ -72,7 +71,7 @@ class SummaryDataModel(BaseModel):
     question_1: str
     question_2: str
     correct_hand_position_procentage: int
-    description: str
+    # description: str
     pattern_id: str
     status: ExperimentStatusEnum
 
