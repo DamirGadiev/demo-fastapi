@@ -3,7 +3,7 @@ from enum import Enum
 import sqlalchemy
 from sqlalchemy import select
 
-from models import metadata, database
+from models import metadata, database, engine
 from models.evaluation_experiments import evaluation_experiment
 from models.experiments import experiment
 
@@ -38,10 +38,26 @@ async def create_profile(gender: str, age: int, identifier: str) -> int:
 
 
 async def aggregate_by_profile():
-    query = profile.join(
-        evaluation_experiment, profile.c.id == evaluation_experiment.c.profile_id
-    ).join(
-        experiment, profile.c.id == experiment.c.profile_id
-    )
-    stmt = select(profile, evaluation_experiment, experiment).select_from(query)
-    return await database.fetch_all(stmt)
+    stmt = """
+    select pr.identifier,
+       pr.gender,
+       pr.age,
+       e.pattern_id,
+       e.status,
+       e_v.valence,
+       e_v.arousal,
+       e_v.intensity,
+       e_v.sharpness,
+       e_v.roughness,
+       e_v.regularity,
+       e_v.shape_recognition,
+       e_v.question_1,
+       e_v.question_2,
+       e_v.correct_hand_position_procentage
+from evaluation_experiment as e_v
+         left join experiments e on e.id = e_v.experiment_id
+         left outer join profiles pr on pr.id = e_v.profile_id;
+    """
+    with engine.connect() as conn:
+        return [row for row in conn.execute(stmt)]
+    return []
