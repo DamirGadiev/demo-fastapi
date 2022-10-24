@@ -50,7 +50,10 @@ class ConnectionManager:
         for key in self.active_connections.get(client_id, {}):
             if key is not device_type:
                 for connection in self.active_connections.get(client_id, {}).get(key):
-                    await connection.send_text(message)
+                    try:
+                        await connection.send_text(message)
+                    except BaseException as e:
+                        pass
 
 
 manager = ConnectionManager()
