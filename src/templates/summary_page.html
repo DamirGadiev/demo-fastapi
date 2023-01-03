@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connected device</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+        <div class="header_c" style="text-align: center;">
+            <h1>Would you like download summary data ?</h1>
+            <hr>
+            <h3>Please enter you personal password</h3>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <form action="/profiles/summary" method="post">
+                    {% if request.message %}
+                    <label>{{request.message}}:</label>
+                    {% else %}
+                    <label>Personal password: </label>
+                    {% endif %}
+                    <input type="password" name="password" placeholder="your password">
+                    <input type="submit" value="ENTER">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
