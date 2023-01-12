@@ -17,13 +17,13 @@ route = APIRouter(
     tags=["profile"],
 )
 
-dir_p = os.path.abspath(os.path.join(dir_path, os.pardir)) + '/templates'
+dir_p = os.path.abspath(os.path.join(dir_path, '../../')) + '/templates'
 templates = Jinja2Templates(directory=dir_p)
 
 @route.get("/summary", response_class=HTMLResponse)
 def get_summary_page(request: Request):
-    return HTMLResponse(summary_page)
-    # return templates.TemplateResponse("summary_page.html", {"request": request})
+    # return HTMLResponse(summary_page)
+    return templates.TemplateResponse("summary_page.html", {"request": request})
 
 
 @route.post("/summary", status_code=status.HTTP_200_OK)
