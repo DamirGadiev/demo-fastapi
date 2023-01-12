@@ -1,6 +1,9 @@
 import io
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
+print("here we are=========")
+print(os.path.abspath(os.path.join(dir_path, os.pardir)))
+print("and there we are")
 
 from fastapi import APIRouter, Form
 from fastapi import status, Request
