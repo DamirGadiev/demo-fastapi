@@ -22,6 +22,7 @@ route = APIRouter(
 )
 
 dir_p = os.path.abspath(os.path.join(dir_path, os.pardir)) + '/templates'
+sys.path.append(dir_path)
 templates = Jinja2Templates(directory=dir_p)
 
 
