@@ -1,3 +1,3 @@
 #!/bin/sh
 
-gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.main:app
+gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.src:app
