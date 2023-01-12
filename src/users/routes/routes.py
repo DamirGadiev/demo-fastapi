@@ -1,5 +1,6 @@
 import io
 import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 from fastapi import APIRouter, Form
 from fastapi import status, Request
