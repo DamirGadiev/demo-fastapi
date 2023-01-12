@@ -1,4 +1,5 @@
 import io
+import os
 
 from fastapi import APIRouter, Form
 from fastapi import status, Request
@@ -13,7 +14,9 @@ route = APIRouter(
     tags=["profile"],
 )
 
-templates = Jinja2Templates(directory="templates")
+dir_p = os.path.abspath(os.path.join(dir_path, os.pardir)) + '/templates'
+templates = Jinja2Templates(directory=dir_p)
+
 
 
 @route.get("/summary", response_class=HTMLResponse)
