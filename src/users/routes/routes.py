@@ -2,10 +2,6 @@ import io
 import os
 import sys
 dir_path = os.path.dirname(os.path.realpath(__file__))
-print("here we are=========")
-print(os.path.abspath(os.path.join(dir_path, os.pardir)))
-print("and there we are")
-# exit()
 sys.path.append(dir_path)
 
 from fastapi import APIRouter, Form
@@ -22,15 +18,12 @@ route = APIRouter(
 )
 
 dir_p = os.path.abspath(os.path.join(dir_path, os.pardir)) + '/templates'
-sys.path.append(dir_path)
 templates = Jinja2Templates(directory=dir_p)
-
-
 
 @route.get("/summary", response_class=HTMLResponse)
 def get_summary_page(request: Request):
-    # return HTMLResponse(summary_page)
-    return templates.TemplateResponse("summary_page.html", {"request": request})
+    return HTMLResponse(summary_page)
+    # return templates.TemplateResponse("summary_page.html", {"request": request})
 
 
 @route.post("/summary", status_code=status.HTTP_200_OK)
