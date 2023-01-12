@@ -1,13 +1,13 @@
-import models
-from config import Config
-from utils.database import engine
-
 if Config.IS_AZURE_ENVIRONMENT:
     import os
     import sys
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     sys.path.append(dir_path)
+
+import models
+from config import Config
+from utils.database import engine
 
 from fastapi import FastAPI
 
