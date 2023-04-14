@@ -12,7 +12,7 @@ class ExperimentDataModel(BaseModel):
 
     valence: int
     arousal: int
-    intensity: int
+    intensity: float
     sharpness: int
     roughness: int
     regularity: int
@@ -25,7 +25,7 @@ class ExperimentDataModel(BaseModel):
 class ExperimentDataSchema(BaseModel):
     valence: int
     arousal: int
-    intensity: int
+    intensity: float
     sharpness: int
     roughness: int
     regularity: int
