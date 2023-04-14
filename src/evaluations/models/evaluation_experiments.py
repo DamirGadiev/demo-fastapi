@@ -12,7 +12,7 @@ class EvaluationExperimentModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     valence = Column(Integer, nullable=True, default=0)
     arousal = Column(Integer, nullable=True, default=0)
-    intensity = Column(Integer, nullable=True, default=0)
+    intensity = Column(DECIMAL, nullable=True, default=0.0)
     sharpness = Column(Integer, nullable=True, default=0)
     roughness = Column(Integer, nullable=True, default=0)
     regularity = Column(Integer, nullable=True, default=0)
