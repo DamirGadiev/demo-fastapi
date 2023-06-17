@@ -9,6 +9,8 @@ import models
 from config import Config
 from utils.database import engine
 
+# print(Config.IS_AZURE_ENVIRONMENT)
+
 from fastapi import FastAPI
 
 from users.routes.routes import route as user_route

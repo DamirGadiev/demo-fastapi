@@ -8,7 +8,7 @@ services:
       - '9991:80'
     hostname: survey-app
     volumes:
-      - ./app:/app
+      - ./src:/app
     environment:
       PG_USERNAME: ${PG_USERNAME}
       PG_PASSWORD: ${POSTGRES_USER}
