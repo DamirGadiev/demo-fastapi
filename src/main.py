@@ -1,4 +1,3 @@
-
 import os
 import sys
 
@@ -8,6 +7,8 @@ sys.path.append(dir_path)
 import models
 from config import Config
 from utils.database import engine
+
+# print(Config.IS_AZURE_ENVIRONMENT)
 
 from fastapi import FastAPI
 
