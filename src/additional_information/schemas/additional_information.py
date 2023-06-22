@@ -1,12 +1,14 @@
 from pydantic import BaseModel
 
-class AdditionalInformationBaseSchema(BaseModel):
+class AdditionalInformationSchema(BaseModel):
     comment: str
 
-class AdditionalInformationSchema(AdditionalInformationBaseSchema):
+    class Config:
+        orm_mode = True
+
+class AdditionalInformationBaseModel(BaseModel):
     identifier: str
     gender: str
     age: int
 
-    class Config:
-        orm_mode = True
+    comment: str
