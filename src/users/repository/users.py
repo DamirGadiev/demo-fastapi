@@ -29,7 +29,7 @@ def aggregate_by_profile():
        e.pattern_id,
        e.status,
        e.storage_name,
-       e.created_at,
+       e_v.created_at,
        e_v.valence,
        e_v.arousal,
        e_v.intensity,
