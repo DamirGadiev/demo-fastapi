@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from datetime import datetime
 
 from experiments.models.experiments import ExperimentModel
 
@@ -15,6 +16,7 @@ def create(data: dict, db: Session) -> ExperimentModel:
             pattern_id=data.get("pattern_id"),
             storage_name=data.get("storage_name"),
             profile_id=data.get("profile_id"),
+            created_at=datetime.utcnow()
         )
         experiment_obj.save(db)
     return experiment_obj

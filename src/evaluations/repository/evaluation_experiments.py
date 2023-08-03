@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from datetime import datetime
 
 from evaluations.models.evaluation_experiments import EvaluationExperimentModel
 from evaluations.shemas.evaluations import ExperimentDataModel
@@ -33,6 +34,7 @@ def create(data: ExperimentDataModel, db: Session) -> ExperimentDataModel:
         question_2=data.question_2,
         profile_id=profile.id,
         experiment_id=experiment.id,
+        created_at=datetime.utcnow()
     )
     evaluation_experiment.save(db)
     return evaluation_experiment
