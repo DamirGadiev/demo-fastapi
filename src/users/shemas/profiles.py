@@ -4,12 +4,14 @@ from pydantic import BaseModel
 class ProfileBaseSchema(BaseModel):
     identifier: str
     gender: str
+    hand: str
     age: int
 
 
 class ProfileSchema(ProfileBaseSchema):
     identifier: str
     gender: str
+    hand: str
     age: int
 
     class Config:

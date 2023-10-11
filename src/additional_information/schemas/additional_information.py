@@ -9,6 +9,7 @@ class AdditionalInformationSchema(BaseModel):
 class AdditionalInformationBaseModel(BaseModel):
     identifier: str
     gender: str
+    hand: str
     age: int
 
     comment: str

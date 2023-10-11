@@ -14,6 +14,7 @@ def create(data: dict, db: Session) -> ProfileModel:
         new_profile = ProfileModel(
             identifier=data.get("identifier"),
             gender=data.get("gender"),
+            hand=data.get("hand"),
             age=data.get("age"),
         )
         new_profile.save(db)
@@ -25,6 +26,7 @@ def aggregate_by_profile():
     stmt = """
     select pr.identifier,
        pr.gender,
+       pr.hand,
        pr.age,
        e.pattern_id,
        e.status,

@@ -4,6 +4,7 @@ from pydantic import BaseModel
 class ExperimentDataModel(BaseModel):
     identifier: str
     gender: str
+    hand: str
     age: int
 
     pattern_id: str

@@ -10,6 +10,7 @@ class ExperimentBaseSchema(BaseModel):
 class ExperimentSchema(ExperimentBaseSchema):
     identifier: str
     gender: str
+    hand: str
     age: int
 
     class Config:
