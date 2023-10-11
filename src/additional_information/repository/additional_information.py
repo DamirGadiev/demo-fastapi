@@ -6,7 +6,7 @@ from users.repository import users
 
 def create(data: AdditionalInformationBaseModel, db: Session) -> AdditionalInformationBaseModel:
     profile = users.create(
-        data = {"identifier": data.identifier, "gender": data.gender, "age": data.age},
+        data = {"identifier": data.identifier, "gender": data.gender, "hand": data.hand, "age": data.age},
         db=db
     )
     additional_information = AdditionalInformationModel(

@@ -37,6 +37,7 @@ def get_summary_data(password: str = Form("default_password")):
         {
             "identifier": item.identifier,
             "gender": item.gender,
+            "hand": item.hand,
             "age": item.age,
             "pattern_id": item.pattern_id,
             "storage_name": item.storage_name,
